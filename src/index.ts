@@ -1,7 +1,15 @@
 import { Elysia } from "elysia";
+import dotenv from "dotenv";
+import { dbConnection } from "../db/db";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+dotenv.config()
+const PORT = Number(process.env.PORT) || 5000;
+const app = new Elysia();
+await dbConnection();
+
+
+
+app.listen(PORT,() => {
+  console.log(`server is on ${PORT}`);
+})

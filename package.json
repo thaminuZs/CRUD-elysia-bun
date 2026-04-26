@@ -9,7 +9,9 @@
     "elysia": "latest"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.5.0"
   },
   "module": "src/index.js"
 }
