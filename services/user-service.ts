@@ -1,11 +1,6 @@
 import { UserModel } from "../models/user";
 import { AppError } from "../utils/app-error";
-
-type UserDTO = {
-    name: string,
-    email: string,
-    age: number,
-};
+import { UserDTO } from "../dtos/user-dto";
 
 export default {
     createUser: async (data: UserDTO) => {
@@ -24,9 +19,7 @@ export default {
     },
 
     getAll: async () => {
-        const users = async () => {
-            const users = await UserModel.find();
-            return users;
-        }
+        const users = await UserModel.find();
+        return users;
     }
 }
