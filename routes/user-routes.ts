@@ -26,3 +26,16 @@ export const userRoutes = new Elysia({prefix: "/users"})
             age: t.Number()
         })
     })
+    .get("/:id", async ({params: {id}}) => {
+        try {
+            return await userService.getUserById(id);
+        }
+        catch (err) {
+            if (err instanceof AppError) {
+                return { status: err.resCode, message: err.message}
+            }
+            else {
+                return {message: "internal error"}
+            }
+        }
+    })

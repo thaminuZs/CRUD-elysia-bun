@@ -21,5 +21,17 @@ export default {
     getAll: async () => {
         const users = await UserModel.find();
         return users;
+    },
+
+    getUserById: async (id: string) => {
+        if (!id) {
+            throw new AppError("id is required");
+        }
+
+        const user = await UserModel.findById(id);
+        if (!user) {
+            throw new AppError("user not found");
+        }
+        return user;
     }
 }
