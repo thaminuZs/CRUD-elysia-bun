@@ -33,5 +33,18 @@ export default {
             throw new AppError("user not found");
         }
         return user;
+    },
+
+    delteUser: async (id: string) => {
+        if (!id) {
+            throw new AppError("id is required");
+        }
+
+        if (await UserModel.findByIdAndDelete(id)) {
+            return {message: `user deleted ${id}`};
+        }
+        else {
+            throw new AppError("user not found");
+        }
     }
 }

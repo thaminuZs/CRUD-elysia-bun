@@ -39,3 +39,16 @@ export const userRoutes = new Elysia({prefix: "/users"})
             }
         }
     })
+    .delete("/", async ({query: {id}}) => {
+        try {
+            return await userService.delteUser(id);
+        }
+        catch (err) {
+            if (err instanceof AppError) {
+                return { status: err.resCode, message: err.message}
+            }
+            else {
+                return {message: "internal error"}
+            }
+        }
+    })
